@@ -6,7 +6,7 @@ LE is a smartphone app for musicians to improve playing speed and vocabulary. It
 
 LE obsessively measures timings and builds a rich relational model of competencies.
 
-![Radial Graph Example](assets/radialGraphExample.jpg)
+<img src="assets/radialGraphExample.jpg" alt="Radial Graph Example" width="400">
 
 LE is completely flexible. It can be used to target any broad or narrow area of performance.
 
@@ -22,21 +22,21 @@ The user interface culminates in a symbol recommendation algorithm.
 
 ## Videos
 
-![Stats update in real time](assets/exaggerated.mp4)
+<img src="assets/exaggerated.mp4" alt="Stats update in real time" width="400">
 
-![Users target broad or specific areas of vocabulary](assets/triads.mp4)
+<img src="assets/triads.mp4" alt="Users target broad or specific areas of vocabulary" width="400">
 
 ## Stats
 
 Users can explore their progress in very fine-grained terms.
 
-![Configurable, real data](assets/1.png)
+<img src="assets/1.png" alt="Configurable, real data" width="400">
 
-![Motivating progression](assets/2.png)
+<img src="assets/2.png" alt="Motivating progression" width="400">
 
-![Rich, filterable historical data](assets/charts.png)
+<img src="assets/charts.png" alt="Rich, filterable historical data" width="400">
 
-![Radial charts reflect met goals](assets/completed.png)
+<img src="assets/completed.png" alt="Radial charts reflect met goals" width="400">
 
 ## Request Access
 
