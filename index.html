@@ -4,14 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #e0e0e0;
+            --primary-color: #f0f0f0;
             --secondary-color: #a0a0a0;
-            --accent-color: #4a90e2;
-            --background-color: #111111;
-            --component-bg: #1a1a1a;
-            --hover-color: #2a2a2a;
+            --accent-color: #3d82f7;
+            --accent-hover: #2d6df5;
+            --background-color: #080808;
+            --component-bg: rgba(25, 25, 25, 0.5);
+            --hover-color: rgba(35, 35, 35, 0.7);
+            --section-spacing: 4rem;
+            --heading-spacing: 3rem;
+            --border-radius: 18px;
+            --box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            --subtle-glow: 0 0 30px rgba(255, 255, 255, 0.03);
         }
 
         /* Splash Screen */
@@ -23,14 +33,14 @@
             bottom: 0;
             width: 100vw;
             height: 100vh;
-            background: #000000;
+            background: linear-gradient(45deg, #080808, #111);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 1;
             visibility: visible;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
             margin: 0;
             padding: 0;
         }
@@ -41,66 +51,127 @@
         }
 
         .splash-logo {
-            width: 80vw;
+            width: 70vw;
             height: auto;
             object-fit: contain;
             object-position: center;
+            animation: pulse 2.5s infinite alternate;
+            filter: drop-shadow(0 0 20px rgba(61, 130, 247, 0.3));
+        }
+        
+        @keyframes pulse {
+            from { opacity: 0.85; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--primary-color);
             margin: 0;
             background-color: var(--background-color);
+            background-image: 
+                radial-gradient(circle at 15% 35%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 45%);
+            background-attachment: fixed;
             overflow-x: hidden;
-            padding: 0 1rem;
+            padding: 0;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        /* Add subtle noise texture for depth */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABLBJREFUaEPtmttx3DAMRVn1I3s3leT9HUwqSf8pIZXs7h7JrbDCESiKIMUH7TizM/nYXYkg7gUuQJm0OxzPGONzjPEwxhj5GWO8xBjPMcbrnz/fxuNhHn777df58/n8T0p5ijEe89/4/GV+flms7e/lj6Kz/R/s/6Vz7P0KAADwLsa45S8BAMhTzvlzYaYIACNgvuYYMhAALDnndwLx+RgDSynlOOb8JeWclwTSIyQsICxkEYDMOX+Rgj44AIwIQJZS2krn2VtaG9YAIHQeQTAk5e/BLZH9lscIwQiBzV9yzptF3FoBUWHFAGCFFtKbdpTRVbxQRwQAHb9b+y1D/Ap9oX30hg2e2VSWCiESUrRBDHOTXyyCYIW35Z1IWKEk9R0h9rG1AFrKWyHF53YKvWEhHXFNKaXI24ilBGCqbGcAJgAnK+8ghLkAACvZ9sIKA7C40MbXVtaNs8MBLAVWs9LfCwxALM9FoDQAWKSU3kAkADrX28Oz9VsSQJPiA2BERy2sFZH3dWhlZW5dsMGXBGBx7+0t9gqxoUyj4Qw2OWfVJaOVZSJoHWhv7NUibEjdHBZJmVIqlvmGlaX6w7aAoHPeOoY9faBMDqvFYmJtCKBQf2QhZWEpZRE71Cukl0j3GrQiCFSPiTEYQPiRUn5gjR9CzhnLfUcaX7NQz/mjIGr6QbVVjAP2CSQB+FRKOYqJz8FKW1iR9aIm6d0Q25TiJQjqEaOhjSlnCrGN7eVfAYYXWrSSvNuiEcDaM7Qk2NKkVGbcAkO1RjWQtCqKbV0jtBBItTCf9pWhtVcI3cFGG0xRELXkLxVMaJVZ/YAoM1dAeuJbPsxCg0rSA9Cj2JT66XyFIBATSA8I2whYrM+XtEpOJVJKE4jpnJai8n7BuN6B0pS3KL4A8tQ9tKrG16T5KQvRzVkrzLx2C3sLr5FU/+4BQnE9vXD2hNbuQvoooJTrv+7l2mI3SCtV7y2e/3tARGF0MYtYZk2v8CJeIaP5xrS5u+lNaR5vF57IEVnFJHLRJBhpZFVL7CutuZd1Iw3FEQtFQ2FqHNJQEq2pPULs4UcbS0L7PjxXS/VRGF7YbamAkDcj3V0UhBbvXtsgCsLrBcRhpWaSSyC1eRFdJyD2vWUajLdAabXNpCcMEX5eEJqdlvOUvVz++5ZarYlTYVirT0prC0wnF63TaAGYejxaqbwF0L0CtXIQ3edGzqIxoNJTXH17eAaA+kRlGtBOBYR00YVKL3QvRX86XvZ89VBXtYuuMbXi93QH6iyRaXbeImYgOedy2wPAg05S+zNlInbY8haBlfQnIHs8YsJ+AKkVu+ZgMXXbfcuJx50AQAz8+m3yFnUVtfJQPEu/Tce+FXjtdvV6WnuZOm1r9Dq0gLRaPyW0WqE0GlabF7pX6mDtWoWvxrV9RuhS9gDSUtqiZVJvS3M0nOYerff+oi0/CyA+6UWTIsDMN8mt9GRq/L9mKnMghBdvx5Yg5DJA/vOj3aTwHGqEjQeh+sHnB55pICsFIV+j80VCRLSIeJlV2fQW/gHnk/8CnlAwxQAAAABJRU5ErkJggg==');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 0 2rem;
         }
 
         .header {
-            height: 15vh;
+            height: 25vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             position: relative;
-            padding-top: 1rem;
-            padding-bottom: 2rem;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--background-color) 100%);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 6rem;
             margin-bottom: 0.5rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+            font-weight: 200;
+            letter-spacing: -0.06em;
             width: 100%;
             text-align: center;
+            text-shadow: var(--text-shadow);
+            background: linear-gradient(90deg, #fff 0%, #ebebeb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Add mobile responsiveness for header */
         @media (max-width: 700px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 4rem;
                 padding: 0.5rem 0;
             }
             .header {
-                height: 20vh;
-                padding-top: 1rem;
+                height: 22vh;
+                padding-top: 1.5rem;
             }
         }
 
         h2 {
-            font-size: 2rem;
-            margin: 3rem 0 1rem;
+            font-size: 2.4rem;
+            margin: var(--heading-spacing) 0 1.5rem;
             color: var(--primary-color);
-            letter-spacing: -0.01em;
+            letter-spacing: -0.03em;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.1) 100%);
+            border-radius: 2px;
+            transform-origin: left center;
+            transform: scaleX(0.3);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        h2:hover::after {
+            transform: scaleX(0.5);
         }
 
         .counter {
@@ -112,31 +183,45 @@
         }
 
         .section {
-            margin-bottom: 2rem;
+            margin-bottom: var(--section-spacing);
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            max-width: 700px;
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            padding: 0 2rem;
         }
 
         .header+.section {
-            margin-top: -3rem;
+            margin-top: 1rem;
+        }
+
+        /* First section special spacing */
+        .section:first-of-type + .section {
+            margin-top: 1rem;
         }
 
         .section.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+        }
 
         .image-break {
             width: 100%;
-            height: 40vh;
-            margin: 3rem 0;
+            height: 45vh;
+            margin: 5rem 0;
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
         .image-break img {
@@ -149,41 +234,63 @@
 
         .components {
             display: grid;
-            gap: 1.5rem;
-            max-width: 700px;
+            gap: 2.5rem;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .component {
-            padding: 1.5rem;
+            padding: 2.5rem;
             background: var(--component-bg);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-radius: var(--border-radius);
+            margin-bottom: 2.5rem;
+            transition: all 0.4s ease;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .component:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.01);
             background-color: var(--hover-color);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         ul {
             list-style-type: none;
             padding-left: 0;
+            margin-top: 1.8rem;
+            margin-bottom: 1.8rem;
         }
 
         li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
         }
 
         li::before {
             content: "→";
             position: absolute;
             left: 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        li:hover::before {
             color: var(--accent-color);
+            transform: translateX(2px);
         }
 
         .parallax {
@@ -201,99 +308,161 @@
         }
 
         .image-with-caption {
-            margin-bottom: 2rem;
+            margin-bottom: 3.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .caption {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--secondary-color);
-            margin-top: 0.5rem;
+            margin-top: 1.2rem;
             font-style: italic;
             text-align: center;
+            max-width: 90%;
+            font-weight: 300;
         }
 
         .image-with-caption img,
         .image-with-caption video {
-            max-width: 280px;
+            max-width: 350px;
             width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
-                       0 0 15px rgba(255, 255, 255, 0.1);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Featured image styling - makes the first image larger */
+        .featured-image {
+            max-width: 600px !important;
+            width: 100%;
+            height: auto;
+            margin: 2rem auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), var(--subtle-glow);
         }
 
         .image-with-caption img:hover,
         .image-with-caption video:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4),
-                       0 0 20px rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), var(--subtle-glow);
+            transform: translateY(-10px) scale(1.02);
         }
 
         .screenshots-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 700px;
-            margin: 0 auto;
+            gap: 4rem;
+            max-width: 900px;
+            margin: 3rem auto;
         }
 
         /* Make grid single column on mobile */
         @media (max-width: 700px) {
             .screenshots-grid {
                 grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .featured-image {
+                max-width: 100% !important;
             }
         }
 
         .email-form {
-            max-width: 400px;
-            margin: 2rem auto;
+            max-width: 480px;
+            margin: 4rem auto;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
+            padding: 2.5rem;
+            background: var(--component-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .email-form input {
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            padding: 1.2rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
             color: var(--primary-color);
             font-size: 1rem;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 300;
         }
 
         .email-form input:focus {
             outline: none;
-            border-color: var(--accent-color);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
         }
 
         .email-form button {
-            padding: 0.8rem 2rem;
+            padding: 1.2rem 2rem;
             border: none;
-            border-radius: 8px;
-            background: var(--accent-color);
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
             color: white;
             font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            letter-spacing: 0.01em;
+            box-shadow: 0 8px 15px rgba(61, 130, 247, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-form button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
         }
 
         .email-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(61, 130, 247, 0.35);
+        }
+        
+        .email-form button:hover::before {
+            left: 100%;
+        }
+        
+        .email-form button:active {
+            transform: translateY(-1px);
         }
 
         .form-status {
             text-align: center;
             min-height: 1.5rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 400;
         }
 
         .form-status.success {
@@ -303,6 +472,54 @@
         .form-status.error {
             color: #f44336;
         }
+        
+        /* Add a container for the entire content */
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Add more professional image styling */
+        img[src="assets/radialGraphExample.jpg"] {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            max-width: 100%;
+            width: 800px;
+        }
+        
+        img[src="assets/radialGraphExample.jpg"]:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* Make strong text stand out more */
+        strong {
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            position: relative;
+            display: inline-block;
+        }
+
+        strong::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        strong:hover::after {
+            transform: scaleX(1);
+        }
     </style>
 </head>
 
@@ -310,145 +527,118 @@
     <div class="splash-screen">
         <img src="assets/logo.png" alt="LE Logo" class="splash-logo">
     </div>
-    <div class="header parallax">
-        <h1><span style="color: #ffffff;">LATENCY ELIMINATION</span> IS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-    </div>
+    
+    <div class="page-container">
+        <div class="header parallax">
+            <h1>LE</h1>
+        </div>
 
-    <div class="section">
-        <p>a real-time recommendation algorithm for musical symbols. LE has an <u>uncanny</u> ability to improve
-            <strong>vocabulary</strong> and <strong>execution speed</strong> faster than other methods, and provides
-            legitimately helpful, granular metrics around your performance fingerprint to <i>describe</i> and <i>characterize</i> your
-            progress. </p>
-    </div>
-
-    <div class="section">
-        <h2>Explanation</h2>
-        <p>1. LE's loss function is the time between seeing a symbol and executing it on your instrument.</p>
-        <p>2. LE uses this data to create quantitative maps of your abilities (your "performance fingerprint"). Your fingerprint informs (i) recommendation and (ii) telemetry features.</p>
-        <p>3. LE forces your skills to converge across <strong>variants</strong>. Here are some groups of variants:</p>
-        <ul>
-            <li>E string, G string guitar notes</li>
-            <li>minor triads, major triads, diminished triads</li>
-            <li>LH, RH piano chords</li>
-            <li>all inversions</li>
-            <li>Cmaj13#11, Cmaj13#5</li>
-            <li>every single inversion of every single chord played with either hand</li>
-        </ul>
-    </div>
 
         <div class="image-with-caption">
-            <img src="assets/radialGraphExample.jpg" alt="Radial Graph Example" style="max-width: 100%; width: 800px;">
-            <p class="caption">A performance fingerprint showing mastery across different scale variants;</p>
-            <p class="caption">the longer you train with the recommendation algorithm, the more balanced your fingerprint will become.</p>
+            <img src="assets/ye.png" alt="Radial Graph Example" class="featured-image">
+            <p class="caption">LE is a smartphone app for musicians to improve playing speed and vocabulary. It is very efficient.</p>
+        </div>
+
+        <div class="section">
+            <h2>Explanation</h2>
+            <p>LE obsessively measures timings and builds a rich relational model of competencies.</p>
+        </div>
+
+        <div class="image-with-caption">
+            <img src="assets/radialGraphExample.jpg" alt="Radial Graph Example">
+            <p class="caption">LE is completely flexible. It can be used to target any broad or narrow area of performance.</p>
         </div>
 
 
-    <div class="section">
-        <h2>Example</h2>
-        <p>The variant space is unlimited and customizable, but left to its own devices, LE will use a <strong>skill tree</strong> approach to acquisition:</p>
+        <div class="section">
+            <h2>Example usage</h2>
+            <ul>
+                <li>Learn each note on the guitar fretboard</li>
+                <li>Improve retrieval to below 300ms for every major 7 chord inversion in L and R hands on the piano</li>
+                <li>Optimize speed of retrieval for the chords in a specific song</li>
+            </ul>
+        </div>
 
-        <p>1. LE asks you to play <i>notes</i> on a piano, and measures the time it takes you to play them. 
-            LE continues to ask you to play various notes until the sliding window average execution ("SWAE") time for each note is below, say, 300ms.</p>
-        <p>2. LE asks you to play <i>intervals</i> (two notes with a defined distance between them) until you are able to play arbitrary intervals with a SWAE time of 300ms. </p>
-        <ul>
-            <li>LE is not guessing or randomizing. It is adaptive, measuring in real time and surfacing your weakest variants.</li>
-        </ul>
-        <p>3. LE asks you to play <i>triads</i> (compositions of intervals) until you are able to play arbitrary triads with a SWAE time of 300ms. </p>
-        <ul>
-            <li>LE will <strong>vary</strong> the triad type, inversion, or hand</strong> depending on your goals.</li>
-        </ul>
-        <p>...<strong> this continues until you can play any shape that you are interested in playing, in any form that you care about, to a speed that you define.</strong> </p>
-    </div>
+        <div class="section">
+            <h2>User Interface</h2>
+            <p>The user interface culminates in a symbol recommendation algorithm.</p>
+        </div>
 
-    <div class="section">
-        <h2>Moving the Needle with LE</h2>
-        <p>Graduation happens shockingly fast. For example, a 10 minute session per day is generally sufficient to acquire every note on the guitar fretboard at <=500ms latency within a week.</p>
-        <p>Other methods require more mental effort and time investment, without the benefit of measurable results and a perfectly optimized path to mastery.</p>
-    </div>
+     
 
-    <div class="section">
-        <h2>Shortcomings & Design Philosophy</h2>
-        <p>LE does not teach musicality. This is honored as a subjective aspect left to the user. </p>
-        <ul>
-            <li>still, certain relationships - like diatonicity, or the fifths circle - are optionally taught.</li>
-        </ul>
-        <p>LE does not teach form.</p>
-        <p>Overall, LE is a tool targeting already advanced instrumentalists who seek <strong>mechanical mastery</strong>. </p>
-    </div>
+        <div class="section">
+            <div class="screenshots-grid">
 
-    <div class="section">
-        <h2>Availability</h2>
-        <p>LE is available as an early access mobile application, available on iOS and Android.</p>
-        <form id="access-form" class="email-form">
-            <input type="email" id="email" placeholder="Enter your email" required>
-            <button type="submit">Request Access</button>
-            <div id="form-status" class="form-status"></div>
-        </form>
-    </div>
+                <div class="image-with-caption">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/exaggerated.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="caption">Stats update in real time.</p>
+                </div>
 
-    <!-- <div class="section">
-        <h2>Open Source contributions</h2>
-        <p>LE is a mature, closed source project, but have made several open source contributions to the community:
-        <ul>
-            <li>A <a href="https://github.com/stirlingcarter/musical-symbols">musical symbol library</a></li>
-            <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a low latency metronome library</a></li>
-            <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a symbol to musical notation converter</a></li>
-        </ul>
-    </div> -->
 
-    <div class="section">
-        <h2>Screenshots & Video Demos</h2>
-        <div class="screenshots-grid">
-            <div class="image-with-caption">
-                <img src="assets/1.png" alt="visualization 1">
-                <p class="caption">Triads data varying across notes, chords, and hands</p>
-            </div>
-
-            <div class="image-with-caption">
-                <img src="assets/2.png" alt="visualization 1">
-                <p class="caption">Data is available for any variant. These are real metrics, not guesses.</p>
-            </div>
-
-            <div class="image-with-caption">
-                <img src="assets/charts.png" alt="visualization 1">
-                <p class="caption">Sample historical data for all times. Variant-specific history graphs are also available.</p>
-            </div>
-
-            <div class="image-with-caption">
-                <img src="assets/completed.png" alt="visualization 1">
-                <p class="caption">Radial charts reflect whether performance goals are met.</p>
-            </div>
-
-            <div class="image-with-caption">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/exaggerated.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p class="caption">Live demonstration of the training interface.</p>
-                <p class="caption">A simple exercise, single notes only, is shown here.</p>
-                <p class="caption">User taps faster and faster in an exaggerated speedrun of the exercise.</p>
-                <p class="caption">Stats are updated in real time.</p>
-            </div>
-
-            <div class="image-with-caption">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/slower.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p class="caption">User returns to the exercise and intentionally slows down.</p>
-                <p class="caption">Stats reflect that the performance no longer meets bar.</p>
-            </div>
-
-            <div class="image-with-caption">
-                <video autoplay muted loop playsinline>
-                    <source src="assets/triads.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p class="caption">An exercise with more variants.</p>
+                <div class="image-with-caption">
+                    <video autoplay muted loop playsinline>
+                        <source src="assets/triads.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="caption">Users target broad or specific areas of vocabulary.</p>
+                </div>
             </div>
         </div>
-    </div>
 
+
+        <div class="section">
+            <h2>Stats</h2>
+            <p>Users can explore their progress in very fine grained terms.</p>
+        </div>
+
+
+        <div class="section">
+            <div class="screenshots-grid">
+                <div class="image-with-caption">
+                    <img src="assets/1.png" alt="visualization 1">
+                    <p class="caption">Configurable, real data.</p>
+                </div>
+
+                <div class="image-with-caption">
+                    <img src="assets/2.png" alt="visualization 1">
+                    <p class="caption">Motivating progression.</p>
+                </div>
+
+                <div class="image-with-caption">
+                    <img src="assets/charts.png" alt="visualization 1">
+                    <p class="caption">Rich, filterable historical data.</p>
+                </div>
+
+                <div class="image-with-caption">
+                    <img src="assets/completed.png" alt="visualization 1">
+                    <p class="caption">Radial charts reflect met goals.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <form id="access-form" class="email-form">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <button type="submit">Request Access</button>
+                <div id="form-status" class="form-status"></div>
+            </form>
+        </div>
+
+        <!-- <div class="section">
+            <h2>Open Source contributions</h2>
+            <p>LE is a mature, closed source project, but have made several open source contributions to the community:
+            <ul>
+                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">musical symbol library</a></li>
+                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a low latency metronome library</a></li>
+                <li>A <a href="https://github.com/stirlingcarter/musical-symbols">a symbol to musical notation converter</a></li>
+            </ul>
+        </div> -->
+    </div>
     
 
     <script>
