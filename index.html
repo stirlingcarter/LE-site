@@ -14,12 +14,13 @@
             --accent-color: #3d82f7;
             --accent-hover: #2d6df5;
             --background-color: #080808;
-            --component-bg: rgba(30, 30, 30, 0.6);
-            --hover-color: rgba(45, 45, 45, 0.8);
-            --section-spacing: 5rem;
-            --border-radius: 16px;
+            --component-bg: rgba(25, 25, 25, 0.5);
+            --hover-color: rgba(35, 35, 35, 0.7);
+            --section-spacing: 6rem;
+            --border-radius: 18px;
             --box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
             --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            --subtle-glow: 0 0 30px rgba(255, 255, 255, 0.03);
         }
 
         /* Splash Screen */
@@ -69,13 +70,27 @@
             margin: 0;
             background-color: var(--background-color);
             background-image: 
-                radial-gradient(circle at 15% 35%, rgba(61, 130, 247, 0.03) 0%, transparent 40%),
-                radial-gradient(circle at 85% 75%, rgba(61, 130, 247, 0.02) 0%, transparent 45%);
+                radial-gradient(circle at 15% 35%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 45%);
             background-attachment: fixed;
             overflow-x: hidden;
             padding: 0;
             font-weight: 300;
             letter-spacing: -0.02em;
+        }
+
+        /* Add subtle noise texture for depth */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABLBJREFUaEPtmttx3DAMRVn1I3s3leT9HUwqSf8pIZXs7h7JrbDCESiKIMUH7TizM/nYXYkg7gUuQJm0OxzPGONzjPEwxhj5GWO8xBjPMcbrnz/fxuNhHn777df58/n8T0p5ijEe89/4/GV+flms7e/lj6Kz/R/s/6Vz7P0KAADwLsa45S8BAMhTzvlzYaYIACNgvuYYMhAALDnndwLx+RgDSynlOOb8JeWclwTSIyQsICxkEYDMOX+Rgj44AIwIQJZS2krn2VtaG9YAIHQeQTAk5e/BLZH9lscIwQiBzV9yzptF3FoBUWHFAGCFFtKbdpTRVbxQRwQAHb9b+y1D/Ap9oX30hg2e2VSWCiESUrRBDHOTXyyCYIW35Z1IWKEk9R0h9rG1AFrKWyHF53YKvWEhHXFNKaXI24ilBGCqbGcAJgAnK+8ghLkAACvZ9sIKA7C40MbXVtaNs8MBLAVWs9LfCwxALM9FoDQAWKSU3kAkADrX28Oz9VsSQJPiA2BERy2sFZH3dWhlZW5dsMGXBGBx7+0t9gqxoUyj4Qw2OWfVJaOVZSJoHWhv7NUibEjdHBZJmVIqlvmGlaX6w7aAoHPeOoY9faBMDqvFYmJtCKBQf2QhZWEpZRE71Cukl0j3GrQiCFSPiTEYQPiRUn5gjR9CzhnLfUcaX7NQz/mjIGr6QbVVjAP2CSQB+FRKOYqJz8FKW1iR9aIm6d0Q25TiJQjqEaOhjSlnCrGN7eVfAYYXWrSSvNuiEcDaM7Qk2NKkVGbcAkO1RjWQtCqKbV0jtBBItTCf9pWhtVcI3cFGG0xRELXkLxVMaJVZ/YAoM1dAeuJbPsxCg0rSA9Cj2JT66XyFIBATSA8I2whYrM+XtEpOJVJKE4jpnJai8n7BuN6B0pS3KL4A8tQ9tKrG16T5KQvRzVkrzLx2C3sLr5FU/+4BQnE9vXD2hNbuQvoooJTrv+7l2mI3SCtV7y2e/3tARGF0MYtYZk2v8CJeIaP5xrS5u+lNaR5vF57IEVnFJHLRJBhpZFVL7CutuZd1Iw3FEQtFQ2FqHNJQEq2pPULs4UcbS0L7PjxXS/VRGF7YbamAkDcj3V0UhBbvXtsgCsLrBcRhpWaSSyC1eRFdJyD2vWUajLdAabXNpCcMEX5eEJqdlvOUvVz++5ZarYlTYVirT0prC0wnF63TaAGYejxaqbwF0L0CtXIQ3edGzqIxoNJTXH17eAaA+kRlGtBOBYR00YVKL3QvRX86XvZ89VBXtYuuMbXi93QH6iyRaXbeImYgOedy2wPAg05S+zNlInbY8haBlfQnIHs8YsJ+AKkVu+ZgMXXbfcuJx50AQAz8+m3yFnUVtfJQPEu/Tce+FXjtdvV6WnuZOm1r9Dq0gLRaPyW0WqE0GlabF7pX6mDtWoWvxrV9RuhS9gDSUtqiZVJvS3M0nOYerff+oi0/CyA+6UWTIsDMN8mt9GRq/L9mKnMghBdvx5Yg5DJA/vOj3aTwHGqEjQeh+sHnB55pICsFIV+j80VCRLSIeJlV2fQW/gHnk/8CnlAwxQAAAABJRU5ErkJggg==');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -108,6 +123,13 @@
             background: linear-gradient(90deg, #fff 0%, #ebebeb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Add mobile responsiveness for header */
@@ -130,6 +152,7 @@
             font-weight: 300;
             position: relative;
             padding-bottom: 0.5rem;
+            display: inline-block;
         }
         
         h2::after {
@@ -137,10 +160,17 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent-color);
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.1) 100%);
             border-radius: 2px;
+            transform-origin: left center;
+            transform: scaleX(0.3);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        h2:hover::after {
+            transform: scaleX(0.5);
         }
 
         .counter {
@@ -236,14 +266,25 @@
             padding-left: 1.8rem;
             font-size: 1.1rem;
             font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
         }
 
         li::before {
             content: "→";
             position: absolute;
             left: 0;
-            color: var(--accent-color);
+            color: rgba(255, 255, 255, 0.6);
             font-weight: 400;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        li:hover::before {
+            color: var(--accent-color);
+            transform: translateX(2px);
         }
 
         .parallax {
@@ -292,7 +333,7 @@
 
         .image-with-caption img:hover,
         .image-with-caption video:hover {
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), var(--subtle-glow);
             transform: translateY(-10px) scale(1.02);
         }
 
@@ -325,6 +366,19 @@
             border: 1px solid rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .email-form input {
@@ -341,9 +395,9 @@
 
         .email-form input:focus {
             outline: none;
-            border-color: var(--accent-color);
+            border-color: rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 0 0 3px rgba(61, 130, 247, 0.15);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
         }
 
         .email-form button {
@@ -358,11 +412,28 @@
             transition: all 0.4s ease;
             letter-spacing: 0.01em;
             box-shadow: 0 8px 15px rgba(61, 130, 247, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-form button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
         }
 
         .email-form button:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(61, 130, 247, 0.35);
+        }
+        
+        .email-form button:hover::before {
+            left: 100%;
         }
         
         .email-form button:active {
@@ -411,6 +482,25 @@
             color: #fff;
             font-weight: 500;
             letter-spacing: -0.01em;
+            position: relative;
+            display: inline-block;
+        }
+
+        strong::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        strong:hover::after {
+            transform: scaleX(1);
         }
     </style>
 </head>
