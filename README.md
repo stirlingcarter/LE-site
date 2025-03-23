@@ -1,4 +1,4 @@
-# LE - Musician's App
+# LE 
 
 LE is a smartphone app for musicians to improve playing speed and vocabulary. It is very efficient.
 
