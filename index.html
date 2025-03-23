@@ -337,6 +337,15 @@
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
+        /* Featured image styling - makes the first image larger */
+        .featured-image {
+            max-width: 600px !important;
+            width: 100%;
+            height: auto;
+            margin: 2rem auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), var(--subtle-glow);
+        }
+
         .image-with-caption img:hover,
         .image-with-caption video:hover {
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), var(--subtle-glow);
@@ -356,6 +365,9 @@
             .screenshots-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
+            }
+            .featured-image {
+                max-width: 100% !important;
             }
         }
 
@@ -523,8 +535,8 @@
 
 
         <div class="image-with-caption">
-            <img src="assets/ye.png" alt="Radial Graph Example">
-            <p class="caption">LE is a smartphone app for musicians to improve playing speed and vocabulary. It is very efficient..</p>
+            <img src="assets/ye.png" alt="Radial Graph Example" class="featured-image">
+            <p class="caption">LE is a smartphone app for musicians to improve playing speed and vocabulary. It is very efficient.</p>
         </div>
 
         <div class="section">
